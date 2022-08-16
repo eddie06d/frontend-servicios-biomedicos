@@ -1,0 +1,146 @@
+<h2 class="mt-4 text-center">Lista Deportistas Registrados</h2>
+<div class="d-flex justify-content-between mt-4">
+  <div>
+    <label class="form-label">Deporte</label>
+    <select class="form-select" (change)="filterBySport($event)">
+      <option value="" selected>Seleccionar</option>
+      <option value="Futbol">Futbol</option>
+      <option value="Voley">Voley</option>
+      <option value="Basquet">Basquet</option>
+      <option value="Natación">Natación</option>
+      <option value="Tenis">Tenis</option>
+      <option value="Badminton">Badminton</option>
+      <option value="Boxeo">Boxeo</option>
+      <option value="Skate">Skate</option>
+      <option value="Pesas">Pesas</option>
+      <option value="Atletismo">Atletismo</option>
+    </select>
+  </div>
+  <div>
+    <label class="form-label">Dni</label>
+    <input type="text" class="form-control" placeholder="Buscar por dni" (input)="filterByDni($event)">
+  </div>
+</div>
+<table class="table mt-4">
+  <thead>
+    <th>N°</th>
+    <th>ID</th>
+    <th>Correo electrónico</th>
+    <th>Acciones</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of usersFilter; let i=index">
+      <td>{{ i+1 }}</td>
+      <td>{{ user._id }}</td>
+      <td>{{ user.email }}</td>
+      <td>
+        <button type="button" class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#modalPersonalData"
+        (click)="onPersonalData(user)">
+          <i class="fa-solid fa-person-circle-check me-1"></i>
+          Datos Personales
+        </button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalHealthData"
+        (click)="onHealthData(user)">
+          <i class="fa-solid fa-file-medical me-1"></i>
+          Datos de Salud
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Modal Personal Data -->
+<div class="modal fade" id="modalPersonalData" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Datos Personales</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body container-grid">
+        <div>
+          <label class="form-label">Nombres</label>
+          <input type="text" class="form-control" [value]="info_personal.firstName" disabled>
+        </div>
+        <div>
+          <label class="form-label">Apellidos</label>
+          <input type="text" class="form-control" [value]="info_personal.lastName" disabled>
+        </div>
+        <div>
+          <label class="form-label">DNI</label>
+          <input type="text" class="form-control" [value]="info_personal.dni" disabled>
+        </div>
+        <div>
+          <label class="form-label">Telefono</label>
+          <input type="text" class="form-control" [value]="info_personal.phone" disabled>
+        </div>
+        <div>
+          <label class="form-label">Género</label>
+          <input type="text" class="form-control" [value]="info_personal.gender" disabled>
+        </div>
+        <div>
+          <label class="form-label">Fecha de Nacimiento</label>
+          <input type="text" class="form-control" [value]="info_personal.dateBirth" disabled>
+        </div>
+        <div>
+          <label class="form-label">Dirección</label>
+          <input type="text" class="form-control" [value]="info_personal.address?.street" disabled>
+        </div>
+        <div>
+          <label class="form-label">Departamento</label>
+          <input type="text" class="form-control" [value]="info_personal.address?.department" disabled>
+        </div>
+        <div>
+          <label class="form-label">Provincia</label>
+          <input type="text" class="form-control" [value]="info_personal.address?.province" disabled>
+        </div>
+        <div>
+          <label class="form-label">Distrito</label>
+          <input type="text" class="form-control" [value]="info_personal.address?.district" disabled>
+        </div>
+        <div>
+          <label class="form-label">Deporte</label>
+          <input type="text" class="form-control" [value]="info_personal.sport" disabled>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Health Data -->
+<div class="modal fade" id="modalHealthData" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Datos de Salud</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body container-grid">
+        <div>
+          <label class="form-label">Edad</label>
+          <input type="text" class="form-control" [value]="info_health.age" disabled>
+        </div>
+        <div>
+          <label class="form-label">Altura(m)</label>
+          <input type="text" class="form-control" [value]="info_health.heigth" disabled>
+        </div>
+        <div>
+          <label class="form-label">Peso(kg)</label>
+          <input type="text" class="form-control" [value]="info_health.weigth" disabled>
+        </div>
+        <div>
+          <label class="form-label">Tipo de Sangre</label>
+          <input type="text" class="form-control" [value]="info_health.bloodType" disabled>
+        </div>
+        <div>
+          <label class="form-label">Enfermedades</label>
+          <input type="text" class="form-control" [value]="info_health.diseases" disabled>
+        </div>
+        <div>
+          <label class="form-label">Alergias</label>
+          <input type="text" class="form-control" [value]="info_health.allergies" disabled>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

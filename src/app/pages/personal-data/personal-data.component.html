@@ -1,0 +1,85 @@
+<div class="mt-4 d-flex flex-column gap-4">
+  <h2 class="text-center">Formulario de Datos Personales</h2>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="d-flex flex-column gap-4">
+    <div class="form-personal-data">
+      <div>
+        <label class="form-label">Tipo de Documento</label>
+        <select class="form-select" formControlName="typeDocument">
+          <option value="" selected>Seleccionar</option>
+          <option value="dni">DNI</option>
+          <option value="carnet">Carnet de Extranjería</option>
+        </select>
+      </div>
+      <div>
+        <label class="form-label">N° de Documento</label>
+        <input type="text" class="form-control" formControlName="dni">
+      </div>
+      <button class="btn btn-primary mt-auto" type="button" style="width: 50px; height: 40px;" (click)="onCheckDni()">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+      <div>
+        <label class="form-label">Nombres</label>
+        <input type="text" class="form-control" formControlName="firstName">
+      </div>
+      <div>
+        <label class="form-label">Apellidos</label>
+        <input type="text" class="form-control" formControlName="lastName">
+      </div>
+      <div>
+        <label class="form-label">Telefono</label>
+        <input type="text" class="form-control" formControlName="phone">
+      </div>
+      <div>
+        <label class="form-label">Sexo</label>
+        <select class="form-select" formControlName="gender">
+          <option value="" selected>Seleccionar</option>
+          <option value="Masculino">Masculino</option>
+          <option value="Femenino">Femenino</option>
+        </select>
+      </div>
+      <div>
+        <label class="form-label">Fecha de Nacimiento</label>
+        <input type="date" class="form-control" formControlName="dateBirth">
+      </div>
+      <div>
+        <label class="form-label">Dirección</label>
+        <input type="text" class="form-control" formControlName="street">
+      </div>
+      <div>
+        <label class="form-label">Departamento</label>
+        <input class="form-control" formControlName="department">
+      </div>
+      <div>
+        <label class="form-label">Provincia</label>
+        <input class="form-control" formControlName="province">
+      </div>
+      <div>
+        <label class="form-label">Distrito</label>
+        <input class="form-control" formControlName="district">
+      </div>
+      <div>
+        <label class="form-label">Deporte</label>
+        <select class="form-select" formControlName="sport">
+          <option value="" selected>Seleccionar</option>
+          <option value="Futbol">Futbol</option>
+          <option value="Voley">Voley</option>
+          <option value="Basquet">Basquet</option>
+          <option value="Natación">Natación</option>
+          <option value="Tenis">Tenis</option>
+          <option value="Badminton">Badminton</option>
+          <option value="Boxeo">Boxeo</option>
+          <option value="Skate">Skate</option>
+          <option value="Pesas">Pesas</option>
+          <option value="Atletismo">Atletismo</option>
+        </select>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" formControlName="terminos">
+        <label class="form-check-label">
+          Aceptar términos y condiciones
+        </label>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-success col-4 mx-auto">Enviar</button>
+  </form>
+</div>
